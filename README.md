@@ -103,44 +103,26 @@ Test files:
 **tb_pkg.sv**
 
 package tb_pkg;
-        import uvm_pkg::*;
-        
+import uvm_pkg::*;
+
         `include "uvm_macros.svh"
-        
-        `include "axi_mem_model.sv"
-        
+	`include "axi_mem_model.sv"
         `include "axi_sequencer.sv"
-        
         `include "axi_driver.sv"
-        
         `include "axi_agent.sv"
-        
         `include "uvma_rvfi_tdefs.sv"
-        
         `include  "uvma_core_cntrl_tdefs.sv"
-        
         `include  "uvma_core_cntrl_cfg.sv"
-        
         `include  "uvme_cva6_cfg.sv"
-        
         `include "rvfi_seq_item.sv"
-        
         `include "rvfi_monitor.sv"
-        
         `include "rvfi_agent.sv"
-        
         `include "rvfi_utils.sv"
-        
         `include "rvfi_ref_model.sv"
-        
         `include "rvfi_spike.sv"
-        
         `include "rvfi_scb.sv"
-        
         `include "env.sv"
-        
         `include "base_test.sv"
-        
 endpackage
 
 **User need to change following configuration & path**
@@ -157,14 +139,18 @@ endpackage
 **Toolchain command**
 riscv64-unknown-elf-gcc -mabi=ilp32 -march=rv32imc -o unit_test unit_test.S -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles ........../riscv_test.h -T ........./link.ld –lgcc
 
-•	riscv64-unknown-elf-objcopy -O elf32-littleriscv unit_test unit_test.elf
-•	riscv64-unknown-elf-objcopy -O binary unit_test.elf unit_test.bin
-•	python3 firmware/makehex.py unit_test.bin 32768 >unit_test.hex
+riscv64-unknown-elf-objcopy -O elf32-littleriscv unit_test unit_test.elf
+
+riscv64-unknown-elf-objcopy -O binary unit_test.elf unit_test.bin
+
+python3 firmware/makehex.py unit_test.bin 32768 >unit_test.hex
 
 **Simulation command:**
 
 rm -rf verdi_config_file simv simv.daidir csrc ucli.key tb_top.trace vcdplus.vpd log tandem.log
+
 vcs -full64 -sverilog -lca -debug_access+all -debug_access+class -kdb -ntb_opts uvm-1.2  +vpi -f file.flist
+
 ./simv +vpd +vcd +verbose -sv_lib ..../spike_install/lib/libriscv -sv_lib ..../spike_install/lib/libfesvr -sv_lib ..../spike_install/lib/libdisasm +trace +firmware=./test/unit_test.hex +permissive-off +elf_file=./test/unit_test > log
 
 
