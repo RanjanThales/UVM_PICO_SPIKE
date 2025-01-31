@@ -1,0 +1,8 @@
+./uvm/tb_pkg.sv
+./interface/axi_intf.sv
+./interface/rvfi_intf.sv
+./RTL/picorv32.sv
+./RTL/picorv32_axi_adapter.sv      
+./RTL/picorv32_axi.sv
+./RTL/picorv32_wrapper.sv
+./tb_top.sv
