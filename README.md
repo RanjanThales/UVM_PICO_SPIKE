@@ -1,7 +1,5 @@
 # UVM_PICO_SPIKE
-UVM based PICO verification Environment with integrated SPIKE
-UVM based PICO verification Environment
-UVM_PICO_SPIKE
+This project provides UVM based PICO verification Environment with integrated SPIKE i.e. UVM_PICO_SPIKE
 
 Original PICO core 
 https://github.com/YosysHQ/picorv32.git
